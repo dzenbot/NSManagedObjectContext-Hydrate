@@ -12,7 +12,7 @@ Import "NSManagedObjectContext+Hydrate.h" to your Application Delegate class.
 
 ### Step 2
 ```
-Import Apple's CoreData frameworks.
+Import Apple's CoreData framework.
 ```
 
 ### Step 3
@@ -23,9 +23,13 @@ NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json
 [_managedObjectContext hydrateStoreWithJSONAtPath:path forEntityName:@"Person"];
 ```
 
+### Sample project
+Take a look into the sample project. Everything is there.
+Enjoy and collaborate if you feel this library could be even better. (Check the to-do list)
+
 ## To-Do's
 - Multiple-hydrations at a time (Gran Central Dispatch or NSOperationQueue)
-- Key-value mapping à la RESTKit (by assigning a collection of object keys matching the JSON keys)
+- Key-value mapping ï¿½ la RESTKit (by assigning a collection of object keys matching the JSON keys)
 - CSV importing
 
 

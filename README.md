@@ -1,9 +1,11 @@
 NSManagedObjectContext-Hydrate
 ==============================
 
-Have you ever wanted to preload an application's CoreData store?
-\nIf you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!
+Have you ever wanted to preload an application's CoreData store?<br>
+If you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!<br><br>
 This category class intends to preload, parse and save automagically every object from a JSON data structure into a persistent store with no effort.
+
+## How to use
 
 ### Step 1
 ```
@@ -24,8 +26,9 @@ NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json
 ```
 
 ### Sample project
-Take a look into the sample project. Everything is there.
-Enjoy and collaborate if you feel this library could be even better. (Check the to-do list)
+Take a look into the sample project. Everything is there.<br>
+Enjoy and collaborate if you feel this library could be improved. (Check the to-do list)
+
 
 ## To-Do's
 - Multiple-hydrations at a time (Gran Central Dispatch or NSOperationQueue)

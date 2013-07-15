@@ -2,7 +2,7 @@ NSManagedObjectContext-Hydrate
 ==============================
 
 Have you ever wanted to preload an application's CoreData store?
-If you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!
+\nIf you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!
 This category class intends to preload, parse and save automagically every object from a JSON data structure into a persistent store with no effort.
 
 ### Step 1

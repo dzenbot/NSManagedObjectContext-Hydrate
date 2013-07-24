@@ -8,18 +8,44 @@
 
 #import "NSManagedObjectContext+Hydrate.h"
 
+static NSManagedObjectContext *_sharedContext = nil;
+
 @implementation NSManagedObjectContext (Hydrate)
+
++ (NSManagedObjectContext *)sharedContext
+{
+    return _sharedContext;
+}
+
++ (void)setSharedContext:(NSManagedObjectContext *)context
+{
+    _sharedContext = context;
+}
 
 - (void)hydrateStoreWithJSONAtPath:(NSString *)path forEntityName:(NSString *)entityName
 {
     // Checks if there isn't already an entity table filled with content
-    if ([self isEmptyStoreForEntityName:entityName]) {
+    if ([self isEmptyStoreForEntityName:entityName] && path) {
+        
         NSError *error = nil;
         
         // Serializes the JSON data structure into arrays and collections
         NSArray *objects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path]
                                                            options:kNilOptions
                                                              error:&error];
+        
+        if (error) {
+            NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
+        }
+        
+        [self hydrateStoreWithJSONObjects:objects forEntityName:entityName];
+    }
+}
+
+- (void)hydrateStoreWithJSONObjects:(NSArray *)objects forEntityName:(NSString *)entityName
+{
+    // Checks if there isn't already an entity table filled with content
+    if ([self isEmptyStoreForEntityName:entityName] && objects) {
         
         // Hydratates the entity table with the serialized objects from the JSON
         if (objects.count > 0) {
@@ -61,7 +87,7 @@
     }];
 
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores objectAtIndex:0];
-    NSLog(@"Successfully preloaded your content into the SQLite store at URL : %@",[store.URL absoluteString]);
+    NSLog(@"Successfully preloaded content into the SQLite's %@ table at URL : %@",entityName,[store.URL absoluteString]);
 }
 
 - (NSArray *)testByFetchingEntity:(NSString *)entityName

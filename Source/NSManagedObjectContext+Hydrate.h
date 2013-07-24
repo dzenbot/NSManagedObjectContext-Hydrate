@@ -14,11 +14,25 @@
  */
 @interface NSManagedObjectContext (Hydrate)
 
+/*
+ */
++ (NSManagedObjectContext *)sharedContext;
+
+/* 
+ */
++ (void)setSharedContext:(NSManagedObjectContext *)context;
+
 /* Preloads an entity table into the persistent store.
  * @param path The JSON file's path.
  * @param entityName The entity name to preload and parse.
  */
 - (void)hydrateStoreWithJSONAtPath:(NSString *)path forEntityName:(NSString *)entityName;
+
+/* Preloads an entity table into the persistent store.
+ * @param data The JSON parsed objects.
+ * @param entityName The entity name to preload and parse.
+ */
+- (void)hydrateStoreWithJSONObjects:(NSArray *)objects forEntityName:(NSString *)entityName;
 
 /* Checks if there isn't already an entity table preloaded with content.
  *

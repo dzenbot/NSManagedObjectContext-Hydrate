@@ -28,15 +28,19 @@
 + (void)setSharedContext:(NSManagedObjectContext *)context;
 
 
-/* Preloads an entity table into the persistent store.
+/* Preloads an entity table into the persistent store based on a CSV file's data.
  *
- * @param path The JSON file's path.
+ * @param path The CSV file's path.
+ * @param attributes A collection of attribute mappings, wherein the keys represent the name target attributes on the destination object and the values represent the source key path.
  * @param entityName The name of an entity to be stored.
+ *
+ * @discussion Calling this method without a valid attribute mappings collection will raise an exception. The dictionary must be keyed by destination attribute name to source key (the inverse way how the RKObjectMapping class from RestKit works).
+ * Passing a nil attribute mappings collection will be the same as calling hydrateStoreWithJSONAtPath:forEntityName: method.
  */
-- (void)hydrateStoreWithJSONAtPath:(NSString *)path forEntityName:(NSString *)entityName;
+- (void)hydrateStoreWithCSVAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName;
 
 
-/* Preloads an entity table into the persistent store.
+/* Preloads an entity table into the persistent store based on a JSON file's data.
  *
  * @param path The JSON file's path.
  * @param attributes A collection of attribute mappings, wherein the keys represent the name target attributes on the destination object and the values represent the source key path.
@@ -46,14 +50,6 @@
  * Passing a nil attribute mappings collection will be the same as calling hydrateStoreWithJSONAtPath:forEntityName: method.
  */
 - (void)hydrateStoreWithJSONAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName;
-
-
-/* Preloads an entity table into the persistent store.
- *
- * @param objects A list of parsed objects (preferable, NSDictionary instances)
- * @param entityName The name of an entity to be stored.
- */
-- (void)hydrateStoreWithObjects:(NSArray *)objects forEntityName:(NSString *)entityName;
 
 
 /* Preloads an entity table into the persistent store.

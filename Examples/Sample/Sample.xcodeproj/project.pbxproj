@@ -21,7 +21,6 @@
 		4FD2F3C91791C93F0096AAA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C31791C93F0096AAA1 /* Default.png */; };
 		4FD2F3CA1791C93F0096AAA1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C41791C93F0096AAA1 /* Default@2x.png */; };
 		4FD2F3CB1791C93F0096AAA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C51791C93F0096AAA1 /* main.m */; };
-		4FD2F3CC1791C93F0096AAA1 /* Sample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C61791C93F0096AAA1 /* Sample-Info.plist */; };
 		4FD2F3CF1791C94E0096AAA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3CD1791C94E0096AAA1 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -186,7 +185,6 @@
 				4FD2F3C81791C93F0096AAA1 /* Default-568h@2x.png in Resources */,
 				4FD2F3C91791C93F0096AAA1 /* Default.png in Resources */,
 				4FD2F3CA1791C93F0096AAA1 /* Default@2x.png in Resources */,
-				4FD2F3CC1791C93F0096AAA1 /* Sample-Info.plist in Resources */,
 				4FD2F3CF1791C94E0096AAA1 /* InfoPlist.strings in Resources */,
 				4FBCAC5717F92D750033D340 /* Persons.json in Resources */,
 			);

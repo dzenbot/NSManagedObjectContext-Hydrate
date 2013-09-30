@@ -67,11 +67,14 @@
             // Once the managed object context has a non-null store coordinator, you are ready to preload your JSON content into the store.
             // IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
             
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
-            NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name"};
+            NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight"};
             NSString *entityName = NSStringFromClass([Person class]);
             
-            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
+//            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
+            
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"csv"];
+            [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:entityName];
         }
     }
     return _managedObjectContext;

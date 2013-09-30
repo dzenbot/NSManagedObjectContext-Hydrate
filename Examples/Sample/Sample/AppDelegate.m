@@ -2,12 +2,14 @@
 //  AppDelegate.m
 //  Sample
 //
-//  Created by Ignacio on 7/13/13.
+//  Created by Ignacio Romero Zurbuchen on 7/13/13.
 //
 //
 
 #import "AppDelegate.h"
 #import "NSManagedObjectContext+Hydrate.h"
+
+#import "Person.h"
 
 @implementation AppDelegate
 
@@ -18,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor darkGrayColor];
     [self.window makeKeyAndVisible];
     
     [self.managedObjectContext unlock];
@@ -60,11 +62,16 @@
         if (coordinator) {
             _managedObjectContext = [[NSManagedObjectContext alloc] init];
             [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+            [NSManagedObjectContext setSharedContext:_managedObjectContext];
             
             // Once the managed object context has a non-null store coordinator, you are ready to preload your JSON content into the store.
-            // IMPORTANT: The JSON key-values must fit the object's property names, so the serialization is made automatically.
+            // IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
+            
             NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
-            [_managedObjectContext hydrateStoreWithJSONAtPath:path forEntityName:@"Person"];
+            NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name"};
+            NSString *entityName = NSStringFromClass([Person class]);
+            
+            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
         }
     }
     return _managedObjectContext;

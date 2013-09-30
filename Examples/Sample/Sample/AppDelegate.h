@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  Sample
 //
-//  Created by Ignacio on 7/13/13.
+//  Created by Ignacio Romero Zurbuchen on 7/13/13.
 //
 //
 

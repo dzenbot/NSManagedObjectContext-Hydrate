@@ -1,8 +1,8 @@
 //
-//  User.h
+//  Person.h
 //  Sample
 //
-//  Created by Ignacio on 7/13/13.
+//  Created by Ignacio Romero Zurbuchen on 9/29/13.
 //
 //
 
@@ -10,12 +10,12 @@
 #import <CoreData/CoreData.h>
 
 
-@interface User : NSManagedObject
+@interface Person : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSDecimalNumber * height;
-@property (nonatomic, retain) NSNumber * age;
-@property (nonatomic, retain) NSDecimalNumber * weight;
 @property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSDecimalNumber * weight;
 
 @end

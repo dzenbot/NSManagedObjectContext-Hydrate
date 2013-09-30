@@ -10,7 +10,10 @@
 
 static NSManagedObjectContext *_sharedContext = nil;
 
+
 @implementation NSManagedObjectContext (Hydrate)
+
+#pragma mark - Shared NSManagedObjectContext
 
 + (NSManagedObjectContext *)sharedContext
 {
@@ -19,60 +22,80 @@ static NSManagedObjectContext *_sharedContext = nil;
 
 + (void)setSharedContext:(NSManagedObjectContext *)context
 {
-    _sharedContext = context;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedContext = context;
+    });
 }
+
+
+#pragma mark - Hydrate from JSON data
 
 - (void)hydrateStoreWithJSONAtPath:(NSString *)path forEntityName:(NSString *)entityName
 {
+    [self hydrateStoreWithJSONAtPath:path attributeMappings:nil forEntityName:entityName];
+}
+
+- (void)hydrateStoreWithJSONAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName
+{
     // Checks if there isn't already an entity table filled with content
-    if ([self isEmptyStoreForEntityName:entityName] && path) {
-        
-        NSError *error = nil;
-        
-        // Serializes the JSON data structure into arrays and collections
-        NSArray *objects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path]
-                                                           options:kNilOptions
-                                                             error:&error];
-        
-        if (error) {
-            NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
-        }
-        
-        [self hydrateStoreWithJSONObjects:objects forEntityName:entityName];
+    if (!path || ![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSLog(@"Sorry, the file at path %@ doesn't seem the exist.",path);
+        return;
+    }
+    
+    NSError *error = nil;
+    
+    // Serializes the JSON data structure into arrays and collections
+    NSArray *objects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path]
+                                                       options:kNilOptions
+                                                         error:&error];
+    
+    if (!error) {
+        [self hydrateStoreWithObjects:objects attributeMappings:attributes forEntityName:entityName];
+    }
+    else {
+        NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
     }
 }
 
-- (void)hydrateStoreWithJSONObjects:(NSArray *)objects forEntityName:(NSString *)entityName
+
+#pragma mark - Hydrate from native objects
+
+- (void)hydrateStoreWithObjects:(NSArray *)objects forEntityName:(NSString *)entityName
 {
-    // Checks if there isn't already an entity table filled with content
-    if ([self isEmptyStoreForEntityName:entityName] && objects) {
-        
-        // Hydratates the entity table with the serialized objects from the JSON
-        if (objects.count > 0) {
-            [self populateEntity:entityName withArray:objects];
-        }
-    }
+    [self hydrateStoreWithObjects:objects attributeMappings:nil forEntityName:entityName];
 }
 
-- (void)populateEntity:(NSString *)entityName withArray:(NSArray *)array
+- (void)hydrateStoreWithObjects:(NSArray *)objects attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName
 {
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    // Checks if there isn't already an entity table filled with content
+    if (![self isEmptyStoreForEntityName:entityName] || objects.count == 0) {
+        return;
+    }
+    
+    [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         // First we insert a new object to the managed object context
         NSObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self];
         
         // Then we retrieve all the entity's attributes, to specially be aware about its properties name
-        NSEntityDescription *attributes = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-        for (NSAttributeDescription *description in attributes.properties) {
-            id value = [obj objectForKey:description.name];
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+        
+        for (NSAttributeDescription *attributeDescription in entityDescription.properties) {
+            
+            NSString *sourceKey = attributes ? [attributes objectForKey:attributeDescription.name] : attributeDescription.name;
+            id value = [obj objectForKey:sourceKey];
+            
+            NSLog(@"source key : %@     matching    attribute name : %@",sourceKey, attributeDescription.name);
             
             // We set the value from the parsed collection, to the entity's attribute name.
             // It is important that the both, the JSON key and the property name match.
-            // Use camel case property names for both. An exception will be raised in case that a key doesn't match to its property.
-            [newObject setValue:value forKey:description.name];
+            // An exception will be raised in case that a key doesn't match to its property.
+            [newObject setValue:value forKey:attributeDescription.name];
         }
         
-        NSError *error;
+        NSError *error = nil;
         if (![self save:&error]) {
             NSLog(@"%s Houston we got a problem: %@", __FUNCTION__, [error localizedDescription]);
         }
@@ -85,10 +108,13 @@ static NSManagedObjectContext *_sharedContext = nil;
     [fetchedObjects enumerateObjectsUsingBlock:^(NSObject *obj, NSUInteger idx, BOOL *stop) {
         NSLog(@"object: %@", obj.description);
     }];
-
+    
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores objectAtIndex:0];
     NSLog(@"Successfully preloaded content into the SQLite's %@ table at URL : %@",entityName,[store.URL absoluteString]);
 }
+
+
+#pragma mark - Testing and validation methods
 
 - (NSArray *)testByFetchingEntity:(NSString *)entityName
 {
@@ -99,11 +125,14 @@ static NSManagedObjectContext *_sharedContext = nil;
     
     NSError *error = nil;
     NSArray *fetchedObjects = [self executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"%s ERROR : %@",__FUNCTION__, [error localizedDescription]);
-    }
     
-    return fetchedObjects;
+    if (!error) {
+        return fetchedObjects;
+    }
+    else {
+        NSLog(@"%s ERROR : %@",__FUNCTION__, [error localizedDescription]);
+        return nil;
+    }
 }
 
 - (BOOL)isEmptyStoreForEntityName:(NSString *)entityName

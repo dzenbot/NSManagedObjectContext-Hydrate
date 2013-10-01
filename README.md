@@ -3,7 +3,8 @@ NSManagedObjectContext-Hydrate
 
 Have you ever wanted to preload an application's CoreData store?<br>
 If you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!<br><br>
-This category class intends to preload, parse and save automagically every object from a JSON or CSV data structure into a persistent store with no effort.
+This category class helps you by parsing and saving automagically every object from a JSON or CSV data structure into a persistent store with no effort.
+
 IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths (see example below).
 
 ## How to use
@@ -22,7 +23,7 @@ Import Apple's CoreData framework.
 After initialising your Managed Object Context, you are ready to preload your JSON content into the store.
 Call the following method:
 ```
-NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
+NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"json"];
 NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight"};
 
 [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:@"Person"];
@@ -30,7 +31,7 @@ NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name
 
 Or your CSV content:
 ```
-NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"cdv"];
+NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"csv"];
 NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight"};
 
 [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:@"Person"];
@@ -43,7 +44,7 @@ Enjoy and collaborate if you feel this library could be improved. (Check the to-
 
 ## To-Do's
 - Multiple-hydrations at a time.
-- More entity types support for CSV parsing.
+- Update values for existent entities.
 - Refactor Refactor Refactor!
 
 

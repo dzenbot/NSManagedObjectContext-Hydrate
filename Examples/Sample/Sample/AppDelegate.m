@@ -70,9 +70,11 @@
             NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight"};
             NSString *entityName = NSStringFromClass([Person class]);
             
+            // Preloads from a JSON file
 //            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
 //            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
             
+            // Preloads from a CSV file
             NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"csv"];
             [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:entityName];
         }

@@ -38,8 +38,12 @@ static NSManagedObjectContext *_sharedContext = nil;
         return;
     }
     
-    NSArray *objects = [self objectsFromCSVAtPath:path];
-    [self hydrateStoreWithObjects:objects attributeMappings:attributes forEntityName:entityName];
+    NSString *JSON = [self JSONStringFromCSVAtPath:path];
+    NSData *data = [JSON dataUsingEncoding:NSUTF8StringEncoding];
+    [self hydrateStoreWithJSONData:data attributeMappings:attributes forEntityName:entityName];
+    
+//    NSArray *objects = [self objectsFromCSVAtPath:path];
+//    [self hydrateStoreWithObjects:objects attributeMappings:attributes forEntityName:entityName];
 }
 
 
@@ -53,10 +57,15 @@ static NSManagedObjectContext *_sharedContext = nil;
         return;
     }
     
+    [self hydrateStoreWithJSONData:[NSData dataWithContentsOfFile:path] attributeMappings:attributes forEntityName:entityName];
+}
+
+- (void)hydrateStoreWithJSONData:(NSData *)data attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName
+{
     NSError *error = nil;
     
     // Serializes the JSON data structure into arrays and collections
-    NSArray *objects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path]
+    NSArray *objects = [NSJSONSerialization JSONObjectWithData:data
                                                        options:kNilOptions
                                                          error:&error];
     
@@ -75,6 +84,8 @@ static NSManagedObjectContext *_sharedContext = nil;
 {
     // Checks if there isn't already an entity table filled with content
     if (![self isEmptyStoreForEntityName:entityName] || objects.count == 0) {
+        if (objects.count == 0) NSLog(@"The array seems to be empty. Please set a non-nil array with objects.");
+        else NSLog(@"A table with the entity name '%@' is already populated.", entityName);
         return;
     }
     
@@ -99,17 +110,19 @@ static NSManagedObjectContext *_sharedContext = nil;
         
         NSError *error = nil;
         if (![self save:&error]) {
-            NSLog(@"%s Houston we got a problem: %@", __FUNCTION__, [error localizedDescription]);
+            NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
         }
     }];
     
     
     // Test by fetching all the saved entities.
+#if DEBUG
     NSArray *fetchedObjects = [self testByFetchingEntity:entityName];
     
     [fetchedObjects enumerateObjectsUsingBlock:^(NSObject *obj, NSUInteger idx, BOOL *stop) {
         NSLog(@"object: %@", obj.description);
     }];
+#endif
     
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores objectAtIndex:0];
     NSLog(@"Successfully preloaded content into the SQLite's %@ table at URL : %@",entityName,[store.URL absoluteString]);
@@ -144,47 +157,55 @@ static NSManagedObjectContext *_sharedContext = nil;
 }
 
 
-#pragma mark - CSV parsing & tool methods
+#pragma mark - CSV tool methods
 
-- (NSArray *)objectsFromCSVAtPath:(NSString *)path
+- (NSString *)JSONStringFromCSVAtPath:(NSString *)path
 {
     NSError *error = nil;
-    NSString *contentsOfFile = [[NSString alloc] initWithContentsOfFile:path encoding:NSStringEncodingConversionAllowLossy error:&error];
-    NSMutableArray *contentsComponents = [NSMutableArray arrayWithArray:[contentsOfFile componentsSeparatedByString:@"\n"]];
+
+    // Gets the CSV string at path
+    NSString *string = [[NSString alloc] initWithContentsOfFile:path encoding:NSStringEncodingConversionAllowLossy error:&error];
+    if (error) {
+        NSLog(@"%s ERROR : %@",__FUNCTION__, [error localizedDescription]);
+        return nil;
+    }
+
+    // Splits the CSV string into several lines
+    NSMutableArray *contentComponents = [NSMutableArray arrayWithArray:[string componentsSeparatedByString:@"\n"]];
     
-    NSArray *keyPaths = [[contentsComponents objectAtIndex:0] componentsSeparatedByString:@","];
-    [contentsComponents removeObjectAtIndex:0];
+    // Retrieves the key paths of the objects, and removes it from the content
+    NSArray *keyPaths = [[contentComponents objectAtIndex:0] componentsSeparatedByString:@","];
+    [contentComponents removeObjectAtIndex:0];
     
-    NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:contentsComponents.count];
+    // The string that will wrap every object
+    NSMutableString *JSONData = [NSMutableString new];
     
-    for (NSString *item in contentsComponents)
-    {
-        NSArray *itemComponents = [item componentsSeparatedByString:@","];
-        NSMutableDictionary *entity = [[NSMutableDictionary alloc] initWithCapacity:keyPaths.count];
+    // Loops trought the CSV content and wraps each found entity
+    [contentComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger i, BOOL *stop) {
+
+        NSArray *itemComponents = [obj componentsSeparatedByString:@","];
+        NSMutableString *object = [[NSMutableString alloc] initWithString:@"{"];
         
-        [itemComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [itemComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger j, BOOL *stop) {
             
-            NSString *object = [itemComponents objectAtIndex:idx];
-            NSString *key = [keyPaths objectAtIndex:idx];
+            NSString *attribute = [itemComponents objectAtIndex:j];
+            NSString *key = [keyPaths objectAtIndex:j];
             
-            if ([self isNumeric:object]) {
-                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-                NSNumber *number = [formatter numberFromString:object];
-                
-                [entity setObject:number forKey:key];
-            }
-            else if ([self isDate:object]) {
-                
-            }
-            else [entity setObject:object forKey:key];
+            NSString *value = ([self isNumeric:attribute]) ? [NSString stringWithFormat:@"%@",attribute] : [NSString stringWithFormat:@"\"%@\"",attribute];
+
+            [object appendString:[NSString stringWithFormat:@"\"%@\":%@",key,value]];
             
+            if (j < keyPaths.count-1) [object appendString:@","];
         }];
         
-        [objects addObject:entity];
-    }
+        [object appendString:@"}"];
+        if (i < contentComponents.count-1) [object appendString:@","];
+        
+        [JSONData appendString:object];
+    }];
     
-    return objects;
+    // Return the newly created JSON string
+    return [NSString stringWithFormat:@"[%@]",JSONData];
 }
 
 - (BOOL)isNumeric:(NSString *)string
@@ -192,11 +213,6 @@ static NSManagedObjectContext *_sharedContext = nil;
     NSCharacterSet *alphaNums = [[NSCharacterSet characterSetWithCharactersInString:@".0987654321."] invertedSet];
     NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:string];
     return ![alphaNums isSupersetOfSet:inStringSet];
-}
-
-- (BOOL)isDate:(NSString *)string
-{
-    return NO;
 }
 
 @end

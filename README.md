@@ -43,7 +43,7 @@ Enjoy and collaborate if you feel this library could be improved. (Check the to-
 
 ## To-Do's
 - Multiple-hydrations at a time.
-- More entity types support for CSV parsing.
+- Update values for existent entities.
 - Refactor Refactor Refactor!
 
 

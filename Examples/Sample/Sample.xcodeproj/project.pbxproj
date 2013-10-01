@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FBCAC5117F920130033D340 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCAC5017F920120033D340 /* Person.m */; };
-		4FBCAC5717F92D750033D340 /* Persons.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCAC5617F92D750033D340 /* Persons.json */; };
+		4FBCAC5717F92D750033D340 /* persons.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCAC5617F92D750033D340 /* persons.json */; };
 		4FD2F3811791BD710096AAA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD2F3801791BD710096AAA1 /* UIKit.framework */; };
 		4FD2F3831791BD710096AAA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD2F3821791BD710096AAA1 /* Foundation.framework */; };
 		4FD2F3851791BD710096AAA1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD2F3841791BD710096AAA1 /* CoreGraphics.framework */; };
@@ -16,7 +16,7 @@
 		4FD2F3931791BD710096AAA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2F3921791BD710096AAA1 /* AppDelegate.m */; };
 		4FD2F39C1791BD710096AAA1 /* Sample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2F39A1791BD710096AAA1 /* Sample.xcdatamodeld */; };
 		4FD2F3A51791BD820096AAA1 /* NSManagedObjectContext+Hydrate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2F3A41791BD820096AAA1 /* NSManagedObjectContext+Hydrate.m */; };
-		4FD2F3BA1791C8B60096AAA1 /* Persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3B81791C8B50096AAA1 /* Persons.csv */; };
+		4FD2F3BA1791C8B60096AAA1 /* persons.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3B81791C8B50096AAA1 /* persons.csv */; };
 		4FD2F3C81791C93F0096AAA1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C21791C93F0096AAA1 /* Default-568h@2x.png */; };
 		4FD2F3C91791C93F0096AAA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C31791C93F0096AAA1 /* Default.png */; };
 		4FD2F3CA1791C93F0096AAA1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2F3C41791C93F0096AAA1 /* Default@2x.png */; };
@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		4FBCAC4F17F920120033D340 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FBCAC5017F920120033D340 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		4FBCAC5617F92D750033D340 /* Persons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Persons.json; sourceTree = "<group>"; };
+		4FBCAC5617F92D750033D340 /* persons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = persons.json; sourceTree = "<group>"; };
 		4FD2F37D1791BD710096AAA1 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD2F3801791BD710096AAA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4FD2F3821791BD710096AAA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -38,7 +38,7 @@
 		4FD2F39B1791BD710096AAA1 /* Sample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sample.xcdatamodel; sourceTree = "<group>"; };
 		4FD2F3A31791BD820096AAA1 /* NSManagedObjectContext+Hydrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Hydrate.h"; sourceTree = "<group>"; };
 		4FD2F3A41791BD820096AAA1 /* NSManagedObjectContext+Hydrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Hydrate.m"; sourceTree = "<group>"; };
-		4FD2F3B81791C8B50096AAA1 /* Persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Persons.csv; sourceTree = "<group>"; };
+		4FD2F3B81791C8B50096AAA1 /* persons.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = persons.csv; sourceTree = "<group>"; };
 		4FD2F3C21791C93F0096AAA1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4FD2F3C31791C93F0096AAA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4FD2F3C41791C93F0096AAA1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 				4FD2F39A1791BD710096AAA1 /* Sample.xcdatamodeld */,
 				4FBCAC4F17F920120033D340 /* Person.h */,
 				4FBCAC5017F920120033D340 /* Person.m */,
-				4FD2F3B81791C8B50096AAA1 /* Persons.csv */,
-				4FBCAC5617F92D750033D340 /* Persons.json */,
+				4FD2F3B81791C8B50096AAA1 /* persons.csv */,
+				4FBCAC5617F92D750033D340 /* persons.json */,
 				4FD2F3891791BD710096AAA1 /* Supporting Files */,
 			);
 			path = Sample;
@@ -181,12 +181,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FD2F3BA1791C8B60096AAA1 /* Persons.csv in Resources */,
+				4FD2F3BA1791C8B60096AAA1 /* persons.csv in Resources */,
 				4FD2F3C81791C93F0096AAA1 /* Default-568h@2x.png in Resources */,
 				4FD2F3C91791C93F0096AAA1 /* Default.png in Resources */,
 				4FD2F3CA1791C93F0096AAA1 /* Default@2x.png in Resources */,
 				4FD2F3CF1791C94E0096AAA1 /* InfoPlist.strings in Resources */,
-				4FBCAC5717F92D750033D340 /* Persons.json in Resources */,
+				4FBCAC5717F92D750033D340 /* persons.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

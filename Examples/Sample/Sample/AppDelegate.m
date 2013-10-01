@@ -71,11 +71,11 @@
             NSString *entityName = NSStringFromClass([Person class]);
             
             // Preloads from a JSON file
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"json"];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"json"];
 //            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
             
             // Preloads from a CSV file
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"Persons" ofType:@"csv"];
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"csv"];
             [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:entityName];
         }
     }

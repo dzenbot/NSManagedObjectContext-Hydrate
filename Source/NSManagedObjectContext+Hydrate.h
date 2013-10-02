@@ -8,27 +8,31 @@
 
 #import <CoreData/CoreData.h>
 
-/* A NSManagedObjectContext category class for preload a CoreData persistent store with JSON data.
+/**
+ * A NSManagedObjectContext category class for preload a CoreData persistent store with JSON data.
  * Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
  */
 @interface NSManagedObjectContext (Hydrate)
 
 
-/* Returns the singleton managedObjectContext instance.
+/**
+ * Returns the singleton managedObjectContext instance.
  *
  * @return The shared managedObjectContext.
  */
 + (NSManagedObjectContext *)sharedContext;
 
 
-/* Sets a managedObjectContext static instance.
+/**
+ * Sets a managedObjectContext static instance.
  *
  * @param context The managedObjectContext to be set.
  */
 + (void)setSharedContext:(NSManagedObjectContext *)context;
 
 
-/* Preloads an entity table into the persistent store based on a CSV file's data.
+/**
+ * Preloads an entity table into the persistent store based on a CSV file's data.
  *
  * @param path The CSV file's path.
  * @param attributes A collection of attribute mappings, wherein the keys represent the name target attributes on the destination object and the values represent the source key path.
@@ -40,7 +44,8 @@
 - (void)hydrateStoreWithCSVAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName;
 
 
-/* Preloads an entity table into the persistent store based on a JSON file's data.
+/**
+ * Preloads an entity table into the persistent store based on a JSON file's data.
  *
  * @param path The JSON file's path.
  * @param attributes A collection of attribute mappings, wherein the keys represent the name target attributes on the destination object and the values represent the source key path.
@@ -52,7 +57,8 @@
 - (void)hydrateStoreWithJSONAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName;
 
 
-/* Preloads an entity table into the persistent store.
+/**
+ * Preloads an entity table into the persistent store.
  *
  * @param objects A list of parsed objects (preferable, NSDictionary instances).
  * @param attributes A collection of attribute mappings, wherein the keys represent the name target attributes on the destination object and the values represent the source key path.
@@ -64,7 +70,8 @@
 - (void)hydrateStoreWithObjects:(NSArray *)objects attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName;
 
 
-/* Checks if there isn't already an entity table preloaded with content.
+/**
+ * Checks if there isn't already an entity table preloaded with content.
  *
  * @param entityName The entity name to check.
  * @returns YES if the store's table is empty. NO if the store is already preloaded with content.

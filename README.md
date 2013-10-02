@@ -9,7 +9,7 @@ IMPORTANT: Parsing is done automagically if the JSON key paths are identical to 
 
 ## Installation
 
-### Available in Cocoa Pods
+Available in [Cocoa Pods](http://cocoapods.org/?q=NSManagedObjectContext-Hydrate)
 ```
 pod 'NSManagedObjectContext-Hydrate', '~> 1.0.1'
 ```

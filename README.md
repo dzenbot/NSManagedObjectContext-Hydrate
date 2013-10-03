@@ -11,7 +11,7 @@ IMPORTANT: Parsing is done automagically if the JSON key paths are identical to 
 
 Available in [Cocoa Pods](http://cocoapods.org/?q=NSManagedObjectContext-Hydrate)
 ```
-pod 'NSManagedObjectContext-Hydrate', '~> 1.0.1'
+pod 'NSManagedObjectContext-Hydrate', '~> 1.0.2'
 ```
 
 ## How to use

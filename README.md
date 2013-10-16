@@ -5,8 +5,6 @@ Have you ever wanted to preload an application's CoreData store?<br>
 If you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!<br><br>
 This category class helps you by parsing and saving automagically every object from a JSON or CSV data structure into a persistent store with no effort.
 
-IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths (see example below).
-
 ## Installation
 
 Available in [Cocoa Pods](http://cocoapods.org/?q=NSManagedObjectContext-Hydrate)

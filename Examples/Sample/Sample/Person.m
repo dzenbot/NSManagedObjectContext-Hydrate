@@ -2,7 +2,7 @@
 //  Person.m
 //  Sample
 //
-//  Created by Ignacio Romero Zurbuchen on 9/29/13.
+//  Created by Ignacio on 12/21/13.
 //
 //
 
@@ -16,5 +16,6 @@
 @dynamic height;
 @dynamic lastName;
 @dynamic weight;
+@dynamic birthDate;
 
 @end

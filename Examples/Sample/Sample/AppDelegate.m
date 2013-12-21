@@ -62,21 +62,25 @@
         if (coordinator) {
             _managedObjectContext = [[NSManagedObjectContext alloc] init];
             [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+            
             [NSManagedObjectContext setSharedContext:_managedObjectContext];
             
-            // Once the managed object context has a non-null store coordinator, you are ready to preload your JSON content into the store.
-            // IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
+            _managedObjectContext.preferredDateFormat = @"yyyy-MM-dd";
             
-            NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight"};
+            // Once the managed object context has a non-null store coordinator, you are ready to preload your JSON content into the store.
+            // IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names.
+            // If not, you must provide a dictionary with attribute mappings matching the source key paths.
+            
+            NSDictionary *attributes = @{@"firstName":@"first_name", @"lastName":@"last_name", @"age":@"age", @"height":@"height", @"weight":@"weight", @"birthDate":@"birth_date"};
             NSString *entityName = NSStringFromClass([Person class]);
             
             // Preloads from a JSON file
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"json"];
-//            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"json"];
+            [_managedObjectContext hydrateStoreWithJSONAtPath:path attributeMappings:attributes forEntityName:entityName];
             
             // Preloads from a CSV file
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"csv"];
-            [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:entityName];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"persons" ofType:@"csv"];
+//            [_managedObjectContext hydrateStoreWithCSVAtPath:path attributeMappings:attributes forEntityName:entityName];
         }
     }
     return _managedObjectContext;

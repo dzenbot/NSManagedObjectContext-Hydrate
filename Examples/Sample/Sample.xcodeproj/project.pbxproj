@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FBCAC5117F920130033D340 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCAC5017F920120033D340 /* Person.m */; };
+		4F8F1C491866047D001F2D93 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F1C481866047D001F2D93 /* Person.m */; };
 		4FBCAC5717F92D750033D340 /* persons.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCAC5617F92D750033D340 /* persons.json */; };
 		4FD2F3811791BD710096AAA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD2F3801791BD710096AAA1 /* UIKit.framework */; };
 		4FD2F3831791BD710096AAA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD2F3821791BD710096AAA1 /* Foundation.framework */; };
@@ -25,8 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FBCAC4F17F920120033D340 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		4FBCAC5017F920120033D340 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		4F8F1C471866047D001F2D93 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F8F1C481866047D001F2D93 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4FBCAC5617F92D750033D340 /* persons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = persons.json; sourceTree = "<group>"; };
 		4FD2F37D1791BD710096AAA1 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD2F3801791BD710096AAA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -97,9 +97,9 @@
 			children = (
 				4FD2F3911791BD710096AAA1 /* AppDelegate.h */,
 				4FD2F3921791BD710096AAA1 /* AppDelegate.m */,
+				4F8F1C471866047D001F2D93 /* Person.h */,
+				4F8F1C481866047D001F2D93 /* Person.m */,
 				4FD2F39A1791BD710096AAA1 /* Sample.xcdatamodeld */,
-				4FBCAC4F17F920120033D340 /* Person.h */,
-				4FBCAC5017F920120033D340 /* Person.m */,
 				4FD2F3B81791C8B50096AAA1 /* persons.csv */,
 				4FBCAC5617F92D750033D340 /* persons.json */,
 				4FD2F3891791BD710096AAA1 /* Supporting Files */,
@@ -199,9 +199,9 @@
 			files = (
 				4FD2F3931791BD710096AAA1 /* AppDelegate.m in Sources */,
 				4FD2F39C1791BD710096AAA1 /* Sample.xcdatamodeld in Sources */,
+				4F8F1C491866047D001F2D93 /* Person.m in Sources */,
 				4FD2F3A51791BD820096AAA1 /* NSManagedObjectContext+Hydrate.m in Sources */,
 				4FD2F3CB1791C93F0096AAA1 /* main.m in Sources */,
-				4FBCAC5117F920130033D340 /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

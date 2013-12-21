@@ -5,7 +5,7 @@
   "age":32,
   "height":167.64,
   "weight":114.64,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Al",
@@ -13,7 +13,7 @@
   "age":73,
   "height":170.18,
   "weight":165.35,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Angelina",
@@ -21,7 +21,7 @@
   "age":38,
   "height":172.72,
   "weight":116.84,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Anna",
@@ -29,7 +29,7 @@
   "age":32,
   "height":172.72,
   "weight":114.64,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Ashley",
@@ -37,7 +37,7 @@
   "age":45,
   "height":170.18,
   "weight":119.05,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Avril",
@@ -45,7 +45,7 @@
   "age":28,
   "height":157.48,
   "weight":108.03,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Bar",
@@ -53,7 +53,7 @@
   "age":28,
   "height":174.0,
   "weight":123.46,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Ben",
@@ -61,7 +61,7 @@
   "age":47,
   "height":168.91,
   "weight":165.35,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Beyonce",
@@ -69,7 +69,7 @@
   "age":31,
   "height":167.64,
   "weight":125.66,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Blake",
@@ -77,7 +77,7 @@
   "age":25,
   "height":172.72,
   "weight":119.05,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Brad",
@@ -85,7 +85,7 @@
   "age":49,
   "height":180.34,
   "weight":194.01,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Britney",
@@ -93,7 +93,7 @@
   "age":31,
   "height":162.56,
   "weight":103.62,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Bruce",
@@ -101,7 +101,7 @@
   "age":58,
   "height":181.61,
   "weight":202.83,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Cameron",
@@ -109,7 +109,7 @@
   "age":40,
   "height":173.99,
   "weight":114.64,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Carmen",
@@ -117,7 +117,7 @@
   "age":41,
   "height":160.02,
   "weight":108.03,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Catherine",
@@ -125,7 +125,7 @@
   "age":43,
   "height":172.72,
   "weight":123.46,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Christian",
@@ -133,7 +133,7 @@
   "age":39,
   "height":182.88,
   "weight":185.19,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Christina",
@@ -141,7 +141,7 @@
   "age":32,
   "height":156.21,
   "weight":99.21,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Cindy",
@@ -149,7 +149,7 @@
   "age":47,
   "height":177.80,
   "weight":114.64,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Courtney",
@@ -157,7 +157,7 @@
   "age":49,
   "height":175.26,
   "weight":123.46,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Daniel",
@@ -165,7 +165,7 @@
   "age":45,
   "height":179.07,
   "weight":178.57,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   },
   {
   "first_name":"Denise",
@@ -173,6 +173,6 @@
   "age":42,
   "height":167.64,
   "weight":114.64,
-  "birth_date":"1981-01-25T00:00:00.0000"
+  "birth_date":"1981-01-25"
   }
   ]

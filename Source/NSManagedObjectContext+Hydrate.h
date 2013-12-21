@@ -10,10 +10,15 @@
 
 /**
  * A NSManagedObjectContext category class for preload a CoreData persistent store with JSON data.
- * Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
+ * IMPORTANT: Parsing is done automagically if the JSON key paths are identical to the entity attribute names. If not, you must provide a dictionary with attribute mappings matching the source key paths.
  */
 @interface NSManagedObjectContext (Hydrate)
 
+/**
+ * A custom date format that will be used for all date mappings that have not been configured specifically.
+ * If not set, the default format will be used instead "yyyy-MM-dd'T'HH:mm:ss'Z'"
+ */
+@property (nonatomic, strong) NSString *preferredDateFormat;
 
 /**
  * Returns the singleton managedObjectContext instance.

@@ -2,7 +2,7 @@
 //  Person.h
 //  Sample
 //
-//  Created by Ignacio Romero Zurbuchen on 9/29/13.
+//  Created by Ignacio on 12/21/13.
 //
 //
 
@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSDecimalNumber * height;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSDecimalNumber * weight;
+@property (nonatomic, retain) NSDate * birthDate;
 
 @end

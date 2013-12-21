@@ -136,31 +136,38 @@ static NSString *_preferredDateFormat = nil;
         for (NSAttributeDescription *attributeDescription in entityDescription.properties) {
             
             NSString *sourceKey = attributes ? [attributes objectForKey:attributeDescription.name] : attributeDescription.name;
-            
-            id obj = [node objectForKey:sourceKey];
-            id value = nil;
-            
-            // We verify if the object is supposed to be parsed as a date. If YES, a default date formatter does the conversion automatically.
-            if ([[attributeDescription attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])]) {
+
+            if(sourceKey != nil) {
+
+                id obj = [node objectForKey:sourceKey];
+                id value = nil;
+
+                // We verify if the object is supposed to be parsed as a date. If YES, a default date formatter does the conversion automatically.
+                if ([[attributeDescription attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])]) {
+
+                    if ([obj isKindOfClass:[NSString class]]) {
+                        value = [self.defaultDateFormatter dateFromString:(NSString *)obj];
+                    }
                 
-                if ([obj isKindOfClass:[NSString class]]) {
-                    value = [self.defaultDateFormatter dateFromString:(NSString *)obj];
+                } else {
+                
+                    value = obj;
+                
                 }
+
+                // We set the value from the parsed collection, to the entity's attribute name.
+                // It is important that the both, the JSON key and the property name match.
+                // An exception will be raised in case that a key doesn't match to its property.
+                [newObject setValue:value forKey:attributeDescription.name];
+
             }
-            else {
-                value = obj;
-            }
-            
-            // We set the value from the parsed collection, to the entity's attribute name.
-            // It is important that the both, the JSON key and the property name match.
-            // An exception will be raised in case that a key doesn't match to its property.
-            [newObject setValue:value forKey:attributeDescription.name];
         }
         
         NSError *error = nil;
         if (![self save:&error]) {
             NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
         }
+        
     }];
     
     

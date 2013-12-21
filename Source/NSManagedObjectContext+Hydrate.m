@@ -28,6 +28,7 @@ static NSManagedObjectContext *_sharedContext = nil;
     });
 }
 
+
 #pragma mark - Hydrate from CSV data
 
 - (void)hydrateStoreWithCSVAtPath:(NSString *)path attributeMappings:(NSDictionary *)attributes forEntityName:(NSString *)entityName
@@ -41,9 +42,6 @@ static NSManagedObjectContext *_sharedContext = nil;
     NSString *JSON = [self JSONStringFromCSVAtPath:path];
     NSData *data = [JSON dataUsingEncoding:NSUTF8StringEncoding];
     [self hydrateStoreWithJSONData:data attributeMappings:attributes forEntityName:entityName];
-    
-//    NSArray *objects = [self objectsFromCSVAtPath:path];
-//    [self hydrateStoreWithObjects:objects attributeMappings:attributes forEntityName:entityName];
 }
 
 

@@ -9,7 +9,7 @@ This category class helps you by parsing and saving automagically every object f
 
 Available in [Cocoa Pods](http://cocoapods.org/?q=NSManagedObjectContext-Hydrate)
 ```
-pod 'NSManagedObjectContext-Hydrate', '~> 1.0.2'
+pod 'NSManagedObjectContext-Hydrate', '~> 1.0.3'
 ```
 
 ## How to use

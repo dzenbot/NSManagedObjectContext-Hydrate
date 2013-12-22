@@ -106,7 +106,7 @@ static NSString *_preferredDateFormat = nil;
         [self hydrateStoreWithObjects:objects attributeMappings:attributes forEntityName:entityName];
     }
     else {
-        NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
+        NSLog(@"%s ERROR : %@",__FUNCTION__, error.localizedDescription);
     }
 }
 
@@ -160,7 +160,7 @@ static NSString *_preferredDateFormat = nil;
         
         NSError *error = nil;
         if (![self save:&error]) {
-            NSLog(@"%s error : %@",__FUNCTION__, error.localizedDescription);
+            NSLog(@"%s ERROR : %@",__FUNCTION__, error.localizedDescription);
         }
     }];
     

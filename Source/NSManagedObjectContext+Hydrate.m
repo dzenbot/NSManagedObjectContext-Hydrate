@@ -136,7 +136,8 @@ static NSString *_preferredDateFormat = nil;
         for (NSAttributeDescription *attributeDescription in entityDescription.properties) {
             
             NSString *sourceKey = attributes ? [attributes objectForKey:attributeDescription.name] : attributeDescription.name;
-            
+            if (!sourceKey) continue;
+                
             id obj = [node objectForKey:sourceKey];
             id value = nil;
             

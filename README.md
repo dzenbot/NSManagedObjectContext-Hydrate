@@ -18,7 +18,7 @@ pod 'NSManagedObjectContext-Hydrate', '~> 1.0.3'
 
 ### Step 1
 ```
-Import "NSManagedObjectContext+Hydrate.h" to your Application Delegate class.
+Import "NSManagedObjectContext+Hydrate.h"
 ```
 
 ### Step 2

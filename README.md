@@ -18,15 +18,11 @@ pod 'NSManagedObjectContext-Hydrate', '~> 1.0.3'
 
 ### Step 1
 ```
-Import "NSManagedObjectContext+Hydrate.h"
+#import <CoreData/CoreData.h>
+#import "NSManagedObjectContext+Hydrate.h"
 ```
 
 ### Step 2
-```
-Import Apple's CoreData framework.
-```
-
-### Step 3
 After initialising your Managed Object Context, you are ready to preload your JSON content into the store.
 Call the following method:
 ```

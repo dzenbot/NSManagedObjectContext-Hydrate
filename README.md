@@ -1,5 +1,8 @@
 NSManagedObjectContext-Hydrate
 ==============================
+[![Pod Version](http://img.shields.io/cocoapods/v/NSManagedObjectContext-Hydrate.svg)](https://cocoadocs.org/docsets/NSManagedObjectContext-Hydrate)
+[![Gittip](http://img.shields.io/gittip/dzenbot.svg)](https://www.gittip.com/dzenbot/)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 Have you ever wanted to preload an application's CoreData store?<br>
 If you did, you must know then that it's a real painful and undocumented process. You probably tried different techniques like using Python or Ruby scripts, but it should be easier than that!<br><br>

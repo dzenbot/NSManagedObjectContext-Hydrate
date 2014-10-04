@@ -152,6 +152,12 @@ static NSString *_preferredDateFormat = nil;
                 value = obj;
             }
             
+            if ([value isKindOfClass:[NSNull class]]) {
+                // Skips Null objects
+                NSLog(@"Skips Null objects");
+                continue;
+            }
+            
             // We set the value from the parsed collection, to the entity's attribute name.
             // It is important that the both, the JSON key and the property name match.
             // An exception will be raised in case that a key doesn't match to its property.
